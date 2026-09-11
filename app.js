@@ -1,5 +1,4 @@
 let allApps = [];
-let activeDept = 'Todos';
 
 function faviconUrl(link) {
   try {
@@ -30,34 +29,13 @@ function escapeAttr(str) {
   return escapeHtml(str).replace(/"/g, '&quot;');
 }
 
-function renderDeptBar() {
-  const depts = ['Todos', ...new Set(allApps.map((a) => a.departamento).filter(Boolean))];
-  const bar = document.getElementById('dept-bar');
-  bar.innerHTML = depts
-    .map(
-      (d) =>
-        `<button class="dept-chip${d === activeDept ? ' active' : ''}" data-dept="${escapeAttr(d)}">${escapeHtml(d)}</button>`
-    )
-    .join('');
-
-  bar.querySelectorAll('.dept-chip').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      activeDept = btn.dataset.dept;
-      renderDeptBar();
-      renderGrid(document.getElementById('search-input').value);
-    });
-  });
-}
-
 function renderGrid(filter) {
   const q = (filter || '').toLowerCase().trim();
   const grid = document.getElementById('tools-grid');
   const visibleCountEl = document.getElementById('visible-count');
   const totalCountEl = document.getElementById('total-count');
 
-  const byDept = allApps.filter((app) => activeDept === 'Todos' || app.departamento === activeDept);
-
-  const filtered = byDept.filter((app) => {
+  const filtered = allApps.filter((app) => {
     if (!q) return true;
     return (
       app.nombre.toLowerCase().includes(q) ||
@@ -67,11 +45,11 @@ function renderGrid(filter) {
     );
   });
 
-  totalCountEl.textContent = byDept.length;
+  totalCountEl.textContent = allApps.length;
   visibleCountEl.textContent = filtered.length;
 
   if (filtered.length === 0) {
-    grid.innerHTML = '<div class="status-msg">SIN RESULTADOS<em>Probá otra búsqueda o departamento</em></div>';
+    grid.innerHTML = '<div class="status-msg">SIN RESULTADOS<em>Probá otra búsqueda</em></div>';
     return;
   }
 
@@ -84,7 +62,7 @@ function renderGrid(filter) {
       <div class="card-title">${escapeHtml(app.nombre)}</div>
       <div class="card-desc">${escapeHtml(app.descripcion)}</div>
       <div class="card-meta">${escapeHtml(linkMeta(app.link))}</div>
-      <div class="card-type">${escapeHtml(app.departamento || 'SIN DEPARTAMENTO')}</div>
+      ${app.departamento ? `<div class="card-type">${escapeHtml(app.departamento)}</div>` : ''}
       ${app.responsable ? `<div class="card-resp">Responsable: <strong>${escapeHtml(app.responsable)}</strong></div>` : ''}
       <div class="card-arrow">↗</div>
     </a>
@@ -105,7 +83,6 @@ async function loadApps() {
     const total = allApps.length;
     subtitle.textContent = `${total} aplicación${total !== 1 ? 'es' : ''} detectada${total !== 1 ? 's' : ''} automáticamente`;
 
-    renderDeptBar();
     renderGrid('');
   } catch (err) {
     subtitle.textContent = 'Error al conectar con Google Sheets';

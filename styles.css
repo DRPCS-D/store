@@ -26,22 +26,17 @@ main { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; paddin
 .section-header { margin-bottom: 50px; }
 .section-label { font-family: 'Rajdhani', sans-serif; font-size: 11px; letter-spacing: 5px; color: var(--red); text-transform: uppercase; display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
 .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--red-dim), transparent); }
-.section-title { font-family: 'Rajdhani', sans-serif; font-size: 46px; font-weight: 700; letter-spacing: 8px; text-transform: uppercase; color: var(--text); line-height: 1; }
+.section-title { font-family: 'Rajdhani', sans-serif; font-size: 46px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--text); line-height: 1; }
 .section-title em { color: var(--red); font-style: normal; }
-.section-subtitle { margin-top: 10px; font-size: 13px; color: var(--text-dim); letter-spacing: 2px; }
-.filter-bar { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.section-subtitle { margin-top: 10px; font-size: 14px; color: var(--text-dim); letter-spacing: 1px; }
+.filter-bar { display: flex; align-items: center; gap: 16px; margin-bottom: 40px; }
 .search-wrap { flex: 1; position: relative; }
-.search-wrap input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--red-dim); color: var(--text); font-family: 'Exo 2', sans-serif; font-size: 14px; letter-spacing: 1px; padding: 12px 16px 12px 44px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+.search-wrap input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--red-dim); color: var(--text); font-family: 'Exo 2', sans-serif; font-size: 15px; letter-spacing: 0.5px; padding: 12px 16px 12px 44px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
 .search-wrap input::placeholder { color: var(--text-dim); }
 .search-wrap input:focus { border-color: var(--red); box-shadow: 0 0 0 1px var(--red-dim); }
 .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--red-dim); font-size: 16px; pointer-events: none; }
-.count-badge { font-family: 'Rajdhani', sans-serif; font-size: 13px; letter-spacing: 2px; color: var(--text-dim); white-space: nowrap; }
+.count-badge { font-family: 'Rajdhani', sans-serif; font-size: 14px; letter-spacing: 1px; color: var(--text-dim); white-space: nowrap; }
 .count-badge strong { color: var(--red); font-size: 18px; }
-
-.dept-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
-.dept-chip { font-family: 'Rajdhani', sans-serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); background: var(--surface); border: 1px solid var(--border); padding: 7px 16px; cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s; }
-.dept-chip:hover { border-color: var(--red-dim); color: var(--text); }
-.dept-chip.active { background: var(--red); border-color: var(--red); color: #fff; }
 
 #tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2px; }
 
@@ -56,11 +51,11 @@ main { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; paddin
 .card-icon { width: 40px; height: 40px; background: rgba(204,0,0,0.08); border: 1px solid var(--red-dim); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: background 0.2s; overflow: hidden; }
 .card-icon img { width: 100%; height: 100%; object-fit: cover; }
 .tool-card:hover .card-icon { background: rgba(204,0,0,0.16); }
-.card-title { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--text); line-height: 1.2; }
-.card-desc { font-size: 12px; color: var(--text-dim); letter-spacing: 0.5px; line-height: 1.5; }
-.card-meta { font-size: 11px; color: var(--text-dim); letter-spacing: 1px; font-family: 'Courier New', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.card-type { font-family: 'Rajdhani', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--red-dim); margin-top: 2px; }
-.card-resp { font-family: 'Rajdhani', sans-serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); }
+.card-title { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text); line-height: 1.25; }
+.card-desc { font-size: 13.5px; color: var(--text-dim); letter-spacing: 0.2px; line-height: 1.5; }
+.card-meta { font-size: 12px; color: var(--text-dim); letter-spacing: 0.3px; font-family: 'Courier New', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-type { font-family: 'Rajdhani', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #d65c5c; margin-top: 2px; }
+.card-resp { font-family: 'Rajdhani', sans-serif; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-dim); }
 .card-resp strong { color: var(--text); }
 .card-arrow { margin-top: auto; align-self: flex-end; font-size: 20px; color: var(--red-dim); transition: transform 0.2s, color 0.2s; line-height: 1; }
 .tool-card:hover .card-arrow { transform: translateX(4px); color: var(--red); }

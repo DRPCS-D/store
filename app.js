@@ -25,23 +25,26 @@ function render() {
   });
 
   if (filtered.length === 0) {
-    grid.innerHTML = '<div class="empty">No se encontraron apps.</div>';
+    grid.innerHTML =
+      '<div class="col-span-full text-center text-on-surface-variant py-16">No se encontraron apps.</div>';
     return;
   }
 
   grid.innerHTML = filtered
     .map(
       (app) => `
-    <div class="card">
-      <div class="card-top">
-        <img class="icon" src="${faviconUrl(app.link)}" alt="" loading="lazy" />
-        <div class="card-info">
-          <h3>${escapeHtml(app.nombre)}</h3>
-          <div class="category">${escapeHtml(app.categoria)}</div>
+    <div class="flex flex-col gap-3 bg-surface-container-lowest rounded-2xl shadow-sm p-4 hover:shadow-md transition-shadow">
+      <div class="flex items-center gap-3">
+        <div class="w-14 h-14 rounded-2xl overflow-hidden shadow-sm flex-shrink-0 bg-surface-container">
+          <img class="w-full h-full object-cover" src="${faviconUrl(app.link)}" alt="" loading="lazy" />
+        </div>
+        <div class="flex flex-col min-w-0">
+          <h3 class="font-semibold text-[15px] text-on-surface truncate">${escapeHtml(app.nombre)}</h3>
+          <span class="text-[12px] font-semibold text-primary truncate">${escapeHtml(app.categoria)}</span>
         </div>
       </div>
-      <div class="description">${escapeHtml(app.descripcion)}</div>
-      <a class="open-btn" href="${escapeAttr(app.link)}" target="_blank" rel="noopener noreferrer">Abrir</a>
+      <p class="text-[13px] text-on-surface-variant leading-snug line-clamp-3 flex-1">${escapeHtml(app.descripcion)}</p>
+      <a class="text-center py-2 rounded-full bg-primary-container text-on-primary font-bold text-sm hover:opacity-90 active:scale-[0.98] transition-all" href="${escapeAttr(app.link)}" target="_blank" rel="noopener noreferrer">Abrir</a>
     </div>
   `
     )
@@ -52,10 +55,13 @@ function renderCategories() {
   const categories = ['Todas', ...new Set(allApps.map((a) => a.categoria).filter(Boolean))];
   const wrap = document.getElementById('categories');
   wrap.innerHTML = categories
-    .map(
-      (cat) =>
-        `<button data-cat="${escapeAttr(cat)}" class="${cat === activeCategory ? 'active' : ''}">${escapeHtml(cat)}</button>`
-    )
+    .map((cat) => {
+      const active = cat === activeCategory;
+      const classes = active
+        ? 'bg-primary-container text-on-primary shadow-sm'
+        : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container';
+      return `<button data-cat="${escapeAttr(cat)}" class="flex-shrink-0 px-4 py-1.5 rounded-full text-[13px] font-semibold whitespace-nowrap transition-all active:scale-95 ${classes}">${escapeHtml(cat)}</button>`;
+    })
     .join('');
 
   wrap.querySelectorAll('button').forEach((btn) => {
@@ -88,7 +94,7 @@ async function loadApps() {
     renderCategories();
     render();
   } catch (err) {
-    grid.innerHTML = `<div class="empty">No se pudieron cargar las apps. Revisa la URL de Apps Script en config.js.<br><small>${escapeHtml(
+    grid.innerHTML = `<div class="col-span-full text-center text-on-surface-variant py-16">No se pudieron cargar las apps. Revisa la URL de Apps Script en config.js.<br><small>${escapeHtml(
       err.message
     )}</small></div>`;
   }

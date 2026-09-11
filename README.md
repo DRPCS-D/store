@@ -40,18 +40,11 @@ El ícono se obtiene automáticamente a partir del dominio del link usando el se
 
 ## 4. Publicar en GitHub Pages
 
-```bash
-git init
-git add .
-git commit -m "Sitio inicial de DRPCS Store"
-git branch -M main
-git remote add origin https://github.com/Diago2077/drpcs-store.git
-git push -u origin main
-```
+El repositorio ya está subido a [DRPCS-D/store](https://github.com/DRPCS-D/store).
 
-Luego, en GitHub: **Settings > Pages > Source: Deploy from a branch > Branch: main / (root)**.
+Para publicarlo, en GitHub: **Settings > Pages > Source: Deploy from a branch > Branch: main / (root)**.
 
-El sitio quedará disponible en `https://diago2077.github.io/drpcs-store/`.
+El sitio quedará disponible en `https://drpcs-d.github.io/store/`.
 
 ## 5. Actualizar apps
 

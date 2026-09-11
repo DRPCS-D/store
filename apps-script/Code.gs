@@ -5,7 +5,7 @@
  * 1. Crea un Google Sheet nuevo.
  * 2. Renombra la primera hoja (pestaña) a: Apps
  * 3. En la fila 1 pon estos encabezados exactamente, en este orden:
- *    Nombre | Descripcion | Categoria | Link | Publicado
+ *    Nombre | Descripcion | Departamento | Responsable | Link | Publicado
  * 4. Ve a Extensiones > Apps Script, borra el contenido de Code.gs
  *    y pega todo este archivo.
  * 5. Haz clic en "Implementar" > "Nueva implementación".
@@ -16,11 +16,12 @@
  *    en el archivo config.js del sitio (APPS_SCRIPT_URL).
  *
  * Columnas del Sheet:
- * - Nombre:      Nombre de la app (texto)
- * - Descripcion: Descripción corta de la app (texto)
- * - Categoria:   Categoría de la app (texto), ej: "Productividad", "Juegos"
- * - Link:        URL completa donde vive la app publicada
- * - Publicado:   TRUE o FALSE (checkbox). Solo se muestran las filas TRUE.
+ * - Nombre:       Nombre de la app (texto)
+ * - Descripcion:  Descripción corta de la app (texto)
+ * - Departamento: Departamento al que pertenece, ej: "Ventas", "Sistemas"
+ * - Responsable:  Persona responsable de la app (texto)
+ * - Link:         URL completa donde vive la app publicada
+ * - Publicado:    TRUE o FALSE (checkbox). Solo se muestran las filas TRUE.
  */
 
 const SHEET_NAME = 'Apps';
@@ -54,7 +55,8 @@ function doGet(e) {
       return {
         nombre: String(item.Nombre || '').trim(),
         descripcion: String(item.Descripcion || '').trim(),
-        categoria: String(item.Categoria || '').trim(),
+        departamento: String(item.Departamento || '').trim(),
+        responsable: String(item.Responsable || '').trim(),
         link: String(item.Link || '').trim()
       };
     });

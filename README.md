@@ -8,12 +8,13 @@ Tienda de apps web personales, estilo Play Store / App Store. El listado de apps
 2. Renombra la primera pestaña a `Apps`.
 3. En la fila 1 pon estos encabezados exactos:
 
-   | Nombre | Descripcion | Categoria | Link | Publicado |
-   |---|---|---|---|---|
+   | Nombre | Descripcion | Departamento | Responsable | Link | Publicado |
+   |---|---|---|---|---|---|
 
    - **Nombre**: nombre de la app.
    - **Descripcion**: descripción corta.
-   - **Categoria**: ej. "Productividad", "Juegos", "Utilidades".
+   - **Departamento**: ej. "Ventas", "Sistemas", "Marketing". Se usa como filtro (chips) en el sitio.
+   - **Responsable**: persona a cargo de la app. Se muestra en la tarjeta.
    - **Link**: URL completa donde vive la app (ej. `https://miapp.vercel.app`).
    - **Publicado**: casilla (checkbox) TRUE/FALSE. Solo las filas en TRUE aparecen en la tienda.
 
